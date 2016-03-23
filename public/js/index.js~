@@ -1,0 +1,29 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Router = require('react-router');
+var LoginView = require('./view/loginView.react.js');
+var DashboardView = require('./view/dashboardView.react.js');
+
+ReactDOM.render((
+	<Router.Router>
+	<Router.Route path="/" component={App}>
+	<Router.Route path="login" component={LoginView}/>
+	<Router.Route path="dashboard" component={DashboardView}/>
+	</Router.Route>
+	</Router.Router>),
+    document.getElementById('adminapp')
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

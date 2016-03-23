@@ -1,0 +1,13 @@
+var React = require('react');
+
+var LoginView = react.createClass({
+    render : function(){
+	return (
+		<div>
+		<h2>LoginView</h2>
+		</div>
+	);
+    }
+});
+
+module.exports = LoginView;
