@@ -1,0 +1,28 @@
+var React = require('react');
+
+var UserRow = React.createClass({
+    render : function(){
+	return (
+		<tr>
+		<td>{this.props.user.id}</td>
+		<td>{this.props.user.auth_id}</td>
+		<td>{this.props.user.email}</td>
+		<td>{this.props.user.nickname}</td>
+	    <td>{this.props.user.sex}</td>
+	    <td>{this.props.user.birth}</td>
+	    <td>{this.props.user.phoneNumber}</td>
+	        <td>{this.props.user.profile_path}</td>
+	    <td>{this.props.user.createdAt}</td>
+	    <td>{this.props.user.groupCount}</td>
+	    <td>{this.props.user.countAlbum}</td>
+		<td>{this.props.user.latestReqDate}</td>
+		<td>{this.props.user.countAddPhoto}</td>
+		<td>{this.props.user.countDeletedPhoto}</td>
+		<td>{this.props.user.usageStorage}</td>
+		<td>Ban Button</td>
+		</tr>
+	);
+    }
+});
+
+module.exports = UserRow;

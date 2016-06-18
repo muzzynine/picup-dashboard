@@ -1,37 +1,46 @@
 var React = require('react');
+var Router = require('react-router');
+var LoginBox = require('../components/loginBox.react');
+var AdminApplicationStore = require('../stores/AdminApplicationStore');
+
 
 var LoginView = React.createClass({
     getInitialState : function(){
 	return {
-		username : '',
-		password : ''
-	}
+	    auth : {
+		state : "wait"
+	    }
+	};
+    },
+    
+    componentDidMount: function(){
+	AdminApplicationStore.addLoginReqListener(this._handleLogin);
     },
 
+    componentWillUnmount: function(){
+	AdminApplicationStore.removeLoginReqListener(this._handleLogin);
+    },
     
-	    
     render : function(){
 	return (
-		<div className="loginBox">
-		아이디와 비밀번호를 입력해주세요
-		<input type="text" name="id" value={this.state.username} onChange={this.handleChange} />
-		<input type="password" name="pw" value={this.state.password} onChange={this.handleChange} />
-		<button type="button" onClick={this.loginSubmit}>관리페이지로 접속</button>
-		</div>
+		<LoginBox auth={this.state.auth} />
 	);
     },
 
-    handleChange : function(event){
-	if(event.target.name === 'id'){
-	    this.setState({username : event.target.value})
-	} else if(event.target.name === 'pw'){
-	    this.setState({password : event.target.value})
+    _handleLogin : function(err, result){
+	if(err){
+	    this.setState({
+		auth : {
+		    state : "failed",
+		    errorMessage : err.errorMessage
+		}
+	    });
+	} else {
+	    console.log("success");
+	 //   Router.browserHistory.push('/control');
 	}
-    },
-
-    loginSubmit : function(event){
-	console.log(event);
     }
 });
+    
 
 module.exports = LoginView;

@@ -1,0 +1,2 @@
+
+moudle.exports = new require('flux').Dispatcher();

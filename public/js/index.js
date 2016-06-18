@@ -1,39 +1,58 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Router = require('react-router');
+var Grid = require('react-bootstrap').Grid;
+var Row = require('react-bootstrap').Row;
+var Col = require('react-bootstrap').Col;
 var LoginView = require('./view/loginView.react');
+var AdminView = require('./view/adminView.react');
 var DashboardView = require('./view/dashboardView.react');
-var DashboardPreview = require('./view/dashboardPreview.react');
 var SearchView = require('./view/SearchView.react');
 
+var AdminAppStore = require('./stores/AdminApplicationStore');
+
+function getUserState(){
+    return AdminAppStore.getUser();
+}
 
 var App = React.createClass({
-    render : function(){
-	alert(this.state);
-	console.log(this.props);
+    componentDidMount: function(){
+	AdminAppStore.addLoginSuccessListener(this._onLoginSuccess);
+    },
 
+    componentWillUnmount: function(){
+	AdminAppStore.removeLoginSuccessListener(this._onLoginSuccess);
+    },
+    
+    render : function(){
 	return (
-		<div>
-		<h2>mainView</h2>
-		<li><Router.Link to={'/login'}>로그인</Router.Link></li>
-		<li><Router.Link to={'/dashboard'}>대쉬보드</Router.Link></li>
+		<Grid fluid={false}>
+		<Row>
+		<Col md={12}>
 		{this.props.children}
-		</div>
+	    </Col>
+		</Row>
+		</Grid>
 	);
+    },
+    _onLoginSuccess : function(){
+	this.setState({
+	    user : AdminAppStore.getUser()
+	});
     }
 });
 
 ReactDOM.render((
-    <Router.Router>
+	<Router.Router>
 	<Router.Route path="/" component={App}>
-	    <Router.Route path="login" component={LoginView} />
-	    <Router.Route path="dashboard" component={DashboardView}>
-	        <Router.IndexRoute component={DashboardPreview} />
-	        <Router.Route path="search" component={SearchView} />
-	    </Router.Route>
+	<Router.Route path="login" component={LoginView} />
+	<Router.Route path="control" user={AdminAppStore.getUser()} component={AdminView} >
+	<Router.IndexRoute component={DashboardView} />
+	<Router.Route path="search" component={SearchView} />
 	</Router.Route>
-    </Router.Router>),
-    document.getElementById('adminapp')
+	</Router.Route>
+	</Router.Router>),
+		document.getElementById('adminapp')
 );
 
 

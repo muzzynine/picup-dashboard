@@ -1,0 +1,35 @@
+var React = require('react');
+var AdminProfile = require('./adminProfile.react');
+var SidebarNavigation = require('./sidebarNavigation.react');
+
+var AdminSidebar = React.createClass({
+    render : function(){
+	var category = this.props.category;
+
+	return (
+		<div>
+		<AdminProfile User={this.props.User}/>
+		<SidebarNavigation nlist={nlist}/>
+		</div>
+	);
+    }
+});
+
+var nlist = [
+    {
+	id : 1,
+	name : "Dashboard",
+	uri : "control"
+    },
+    {
+	id : 2,
+	name : "Management",
+	uri : "control/search"
+    }
+];
+    
+    
+
+
+module.exports = AdminSidebar;
+		

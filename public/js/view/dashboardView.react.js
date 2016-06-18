@@ -4,7 +4,8 @@ var DashboardView = React.createClass({
     render : function(){
 	return (
 		<div>
-		<h2>DashboardView</h2>
+		<header>DashboardView</header>
+		
 		</div>
 	);
     }

@@ -1,0 +1,28 @@
+var React = require('react');
+
+var UserInfoTableHeader = React.createClass({
+    render : function(){
+	return (
+		<tr>
+		<th>uid</th>
+		<th>oauthId</th>
+		<th>Email</th>
+		<th>Nickname</th>
+		<th>Sex</th>
+		<th>birth</th>
+		<th>phoneNumber</th>
+		<th>profile_path</th>
+		<th>createdAt</th>
+		<th>groupCount</th>
+		<th>countAlbum</th>
+		<th>latestReqDate</th>
+		<th>countAddPhoto</th>
+		<th>countDeletedPhoto</th>
+		<th>usageStorage</th>
+		<th>ban</th>
+		</tr>
+	);
+    }
+});
+
+module.exports = UserInfoTableHeader;

@@ -1,0 +1,7 @@
+module.exports = {
+    LOGIN_SUCCESS : "LOGIN_SUCCESS",
+    LOGIN_FAILED : "LOGIN_FAILED",
+
+    FIND_USER : "FIND_USER",
+    FIND_USERS : "FIND_USERS"
+}

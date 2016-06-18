@@ -1,0 +1,11 @@
+var React = require('react');
+
+var SidebarNavigationRow = React.createClass({
+    render : function(){
+	return (
+		<span>{this.props.item.name}</span>
+	);
+    }
+});
+
+module.exports = SidebarNavigationRow;

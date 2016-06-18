@@ -1,0 +1,22 @@
+/**
+ * Created by impyeong-gang on 1/11/16.
+ */
+var UserShceme = require('./scheme').USER;
+
+module.exports = function(connection){
+    var User = connection.define(UserShceme.TABLE,
+        UserShceme.SCHEME, {
+            instanceMethods: {
+                getProfile : function(){
+                    return {
+                        uid : user.id,
+                        nickname : user.nickname,
+                        pic_s3path : user.profile_path
+                    }
+                }
+            }
+        });
+    
+    return User;
+};
+

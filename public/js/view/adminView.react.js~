@@ -1,0 +1,31 @@
+var React = require('react');
+var AdminSidebar = require('../components/adminSidebar.react');
+var AdminAppStore = require('../stores/AdminApplicationStore');
+
+var AdminView = React.createClass({
+    componentWillMount : function(){
+	if(!this.props.route.user){
+	    console.log("login required");
+	}
+	console.log(this.props.route.user);
+    },
+    
+    getInitialState : function(){
+	return {
+	    user : AdminAppStore.getUser()
+	}
+    },
+    
+    render : function(){
+	return (
+		<div>
+		<AdminSidebar User={this.state.user}/>
+		{this.props.children}
+		</div>
+	);
+    }
+});
+
+module.exports = AdminView;
+
+				     
